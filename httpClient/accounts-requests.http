@@ -1,0 +1,23 @@
+@fullPath = localhost:8080/api
+
+### Create account
+POST {{fullPath}}/create
+Content-Type: application/json
+
+< ./payloads/createAccount.json
+
+
+### Fetch account
+GET {{fullPath}}/fetch?mobileNumber=0610001122
+Content-Type: application/json
+
+
+### Update account
+PUT {{fullPath}}/update
+Content-Type: application/json
+
+< ./payloads/updateAccount.json
+
+### Delete account
+DELETE {{fullPath}}/delete?mobileNumber=0610001122
+Content-Type: application/json
