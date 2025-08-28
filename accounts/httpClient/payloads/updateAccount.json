@@ -1,0 +1,10 @@
+{
+  "name": "Felipe T. de Araujo",
+  "email": "felipe@test.com",
+  "mobileNumber": "0610001122",
+  "accountDTO": {
+    "accountNumber": 1877140733,
+    "accountType": "SAVINGS",
+    "branchAddress": "Some street, Amsterdam"
+  }
+}
