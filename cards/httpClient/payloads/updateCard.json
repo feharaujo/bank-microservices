@@ -1,0 +1,9 @@
+{
+  "cardId": 1,
+  "cardNumber": "100394792415",
+  "cardType": "Credit Card",
+  "mobileNumber": "0610001122",
+  "totalLimit": 100000,
+  "amountUsed": 1000,
+  "availableAmount": 90000
+}

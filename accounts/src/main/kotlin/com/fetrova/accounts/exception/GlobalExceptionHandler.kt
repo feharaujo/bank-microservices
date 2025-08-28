@@ -42,7 +42,7 @@ class GlobalExceptionHandler: ResponseEntityExceptionHandler() {
             LocalDateTime.now()
         )
 
-        return ResponseEntity(errorResponseDTO, HttpStatus.BAD_REQUEST)
+        return ResponseEntity(errorResponseDTO, HttpStatus.NOT_FOUND)
     }
 
     @ExceptionHandler(Exception::class)
