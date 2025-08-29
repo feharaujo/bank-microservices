@@ -1,0 +1,21 @@
+@fullPath = localhost:8090/api
+
+### Create card
+POST {{fullPath}}/create?mobileNumber=0610001122
+Content-Type: application/json
+
+
+### Fetch card
+GET {{fullPath}}/fetch?mobileNumber=0610001122
+Content-Type: application/json
+
+
+### Update card
+PUT {{fullPath}}/update
+Content-Type: application/json
+
+< ./payloads/updateLoans.json
+
+### Delete card
+DELETE {{fullPath}}/delete?mobileNumber=0610001122
+Content-Type: application/json
