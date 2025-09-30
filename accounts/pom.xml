@@ -9,6 +9,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>accounts</name>
     <description>Microservice for accounts</description>
+    <packaging>jar</packaging>
 
     <parent>
 		<groupId>org.springframework.boot</groupId>
@@ -16,7 +17,6 @@
 		<version>3.5.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-
 
     <url/>
 	<licenses>
