@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "qa"
+
+build:
+  version: "2.0"
+
+accounts:
+  message: "Welcome - QA ENV"
+  contactDetails:
+    name: "Felipe - QA"
+    email: "felipe@test.com"
+  onCallSupport:
+    - +310610001122
+    - +310610001133
