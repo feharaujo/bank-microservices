@@ -111,3 +111,57 @@ annotation class AccountUpdateDocumentation
     ]
 )
 annotation class AccountDeleteDocumentation
+
+@Target(AnnotationTarget.FUNCTION)
+@Retention(RUNTIME)
+@Operation(
+    summary = "Build Info details",
+    description = "Build Info details"
+)
+@ApiResponses(
+    value = [
+        ApiResponse(responseCode = STATUS_200, description = MESSAGE_200),
+        ApiResponse(
+            responseCode = STATUS_500,
+            description = MESSAGE_500,
+            content = [Content(schema = Schema(implementation = ErrorResponseDTO::class))]
+        )
+    ]
+)
+annotation class BuildInfoDocumentation
+
+@Target(AnnotationTarget.FUNCTION)
+@Retention(RUNTIME)
+@Operation(
+    summary = "Java version details",
+    description = "Java version details"
+)
+@ApiResponses(
+    value = [
+        ApiResponse(responseCode = STATUS_200, description = MESSAGE_200),
+        ApiResponse(
+            responseCode = STATUS_500,
+            description = MESSAGE_500,
+            content = [Content(schema = Schema(implementation = ErrorResponseDTO::class))]
+        )
+    ]
+)
+annotation class JavaVersionDocumentation
+
+@Target(AnnotationTarget.FUNCTION)
+@Retention(RUNTIME)
+@Operation(
+    summary = "Contact Info details",
+    description = "Contact Info details"
+)
+@ApiResponses(
+    value = [
+        ApiResponse(responseCode = STATUS_200, description = MESSAGE_200),
+        ApiResponse(
+            responseCode = STATUS_500,
+            description = MESSAGE_500,
+            content = [Content(schema = Schema(implementation = ErrorResponseDTO::class))]
+        )
+    ]
+)
+annotation class ContactInfoDocumentation

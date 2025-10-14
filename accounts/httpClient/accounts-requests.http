@@ -21,3 +21,15 @@ Content-Type: application/json
 ### Delete account
 DELETE {{fullPath}}/delete?mobileNumber=0610001122
 Content-Type: application/json
+
+### Get build info
+GET {{fullPath}}/build-info
+Content-Type: application/json
+
+### Java version info
+GET {{fullPath}}/java-version
+Content-Type: application/json
+
+### Contact info
+GET {{fullPath}}/contact-info
+Content-Type: application/json
