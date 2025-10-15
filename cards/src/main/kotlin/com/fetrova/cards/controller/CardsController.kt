@@ -12,11 +12,15 @@ import com.fetrova.cards.documentation.CardDeleteDocumentation
 import com.fetrova.cards.documentation.CardFetchDocumentation
 import com.fetrova.cards.documentation.CardUpdateDocumentation
 import com.fetrova.cards.documentation.CardsControllerDocumentation
+import com.fetrova.cards.dto.CardsContactInfoDto
 import com.fetrova.cards.dto.CardsDTO
 import com.fetrova.cards.dto.ResponseDTO
 import com.fetrova.cards.service.ICardsService
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Pattern
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.core.env.Environment
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -36,6 +40,15 @@ import org.springframework.web.bind.annotation.RestController
 )
 @CardsControllerDocumentation
 class CardsController(private val cardsService: ICardsService, private val iCardsService: ICardsService) {
+
+    @Value("\${build.version}")
+    lateinit var buildVersion: String
+
+    @Autowired
+    lateinit var environment: Environment
+
+    @Autowired
+    lateinit var cardsContactInfo: CardsContactInfoDto
 
     @CardCreationDocumentation
     @PostMapping("/create")
@@ -82,6 +95,16 @@ class CardsController(private val cardsService: ICardsService, private val iCard
             ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
                 .body(ResponseDTO(STATUS_417, MESSAGE_417_DELETE))
         }
+    }
+
+    @GetMapping("/build-info")
+    fun getBuildInfo(): ResponseEntity<String> {
+        return ResponseEntity.ok(buildVersion)
+    }
+
+    @GetMapping("/contact-info")
+    fun getContactInfo(): ResponseEntity<CardsContactInfoDto> {
+        return ResponseEntity.ok(cardsContactInfo)
     }
 
 }

@@ -28,7 +28,7 @@ build:
   version: "3.0"
 
 accounts:
-  message: "Welcome to Bank account related APIs"
+  message: "Accounts - DEV"
   contactDetails:
     name: "Felipe - Developer"
     email: "felipe@test.com"
