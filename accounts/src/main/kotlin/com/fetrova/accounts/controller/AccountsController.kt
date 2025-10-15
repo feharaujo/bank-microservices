@@ -12,11 +12,18 @@ import com.fetrova.accounts.constants.STATUS_200
 import com.fetrova.accounts.constants.STATUS_201
 import com.fetrova.accounts.constants.STATUS_417
 import com.fetrova.accounts.documentation.AccountDeleteDocumentation
+import com.fetrova.accounts.documentation.BuildInfoDocumentation
+import com.fetrova.accounts.documentation.ContactInfoDocumentation
+import com.fetrova.accounts.documentation.JavaVersionDocumentation
+import com.fetrova.accounts.dto.AccountsContactInfoDto
 import com.fetrova.accounts.dto.CustomerDTO
 import com.fetrova.accounts.dto.ResponseDTO
 import com.fetrova.accounts.service.IAccountsService
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Pattern
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.core.env.Environment
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -38,6 +45,15 @@ import org.springframework.web.bind.annotation.RestController
 class AccountsController(
     var accountService: IAccountsService
 ) {
+
+    @Value("\${build.version}")
+    lateinit var buildVersion: String
+
+    @Autowired
+    lateinit var environment: Environment
+
+    @Autowired
+    lateinit var accountsContactInfo: AccountsContactInfoDto
 
     @AccountCreationDocumentation
     @PostMapping("/create")
@@ -86,6 +102,24 @@ class AccountsController(
         } else {
             ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDTO(STATUS_417, MESSAGE_417_DELETE))
         }
+    }
+
+    @BuildInfoDocumentation
+    @GetMapping("/build-info")
+    fun getBuildInfo(): ResponseEntity<String> {
+        return ResponseEntity.ok(buildVersion)
+    }
+
+    @JavaVersionDocumentation
+    @GetMapping("/java-version")
+    fun getJavaVersion(): ResponseEntity<String> {
+        return ResponseEntity.ok(environment.getProperty("JAVA_HOME"))
+    }
+
+    @ContactInfoDocumentation
+    @GetMapping("/contact-info")
+    fun getContactInfo(): ResponseEntity<AccountsContactInfoDto> {
+        return ResponseEntity.ok(accountsContactInfo)
     }
 
 }
