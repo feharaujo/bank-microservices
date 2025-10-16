@@ -1,3 +1,5 @@
+server:
+  port: 8080
 spring:
   application:
     name: accounts
@@ -15,23 +17,5 @@ spring:
     hibernate:
       ddl-auto: update
   config:
-    import:
-      - "application_qa.yml"
-      - "application_prod.yml"
-  profiles:
-    active:
-      - "qa"
-server:
-  port: 8080
-
-build:
-  version: "3.0"
-
-accounts:
-  message: "Accounts - DEV"
-  contactDetails:
-    name: "Felipe - Developer"
-    email: "felipe@test.com"
-  onCallSupport:
-    - +310610001122
-    - +310610001133
+    #optional dont fail the app start if config server is not available
+    import: "optional:configserver:http://localhost:8071/"

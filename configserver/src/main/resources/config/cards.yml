@@ -1,0 +1,11 @@
+build:
+  version: "3.0"
+
+cards:
+  message: "Cards - DEV"
+  contactDetails:
+    name: "Felipe - Developer"
+    email: "felipe@test.com"
+  onCallSupport:
+    - +310610001122
+    - +310610001133
