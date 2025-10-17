@@ -1,0 +1,20 @@
+server:
+  port: 8071
+
+spring:
+  application:
+    name: configserver
+  profiles:
+    active: git
+  #active: native - used only for classpath or local configs
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/feharaujo/bank-microservices-properties.git
+#        native:
+          #search-locations: classpath:/config
+          default-label: main
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
