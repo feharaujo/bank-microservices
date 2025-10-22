@@ -1,3 +1,5 @@
+server:
+  port: 9000
 spring:
   application:
     name: cards
@@ -15,23 +17,16 @@ spring:
     hibernate:
       ddl-auto: update
   config:
-    import:
-      - "application_qa.yml"
-      - "application_prod.yml"
-  profiles:
-    active:
-      - "qa"
-server:
-  port: 9000
+    import: "optional:configserver:http://localhost:8071/"
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
 
-build:
-  version: "3.0"
 
-cards:
-  message: "Cards - DEV"
-  contactDetails:
-    name: "Felipe - Developer"
-    email: "felipe@test.com"
-  onCallSupport:
-    - +310610001122
-    - +310610001133
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

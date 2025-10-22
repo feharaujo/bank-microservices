@@ -27,3 +27,7 @@ Content-Type: application/json
 ### Contact info
 GET {{fullPath}}/contact-info
 Content-Type: application/json
+
+### Refresh actuator endpoints
+POST localhost:8090/actuator/refresh
+Content-Type: application/json

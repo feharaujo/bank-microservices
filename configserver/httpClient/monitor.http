@@ -1,0 +1,7 @@
+@fullPath = localhost:8071
+
+### Monitor Hook
+POST {{fullPath}}/monitor
+Content-Type: application/json
+
+< ./payloads/webhook.json

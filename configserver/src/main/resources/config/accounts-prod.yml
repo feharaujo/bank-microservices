@@ -1,13 +1,8 @@
-spring:
-  config:
-    activate:
-      on-profile: "prod"
-
 build:
   version: "1.0"
 
-cards:
-  message: "Cards - PROD ENV"
+accounts:
+  message: "Accounts - PROD ENV"
   contactDetails:
     name: "Felipe - PROD"
     email: "felipe@test.com"
