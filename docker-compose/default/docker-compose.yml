@@ -35,7 +35,7 @@ services:
 
   accounts:
     image: "fearaujo/accounts:s6"
-    container_name: "accounts-ms"
+    container_name: "accounts"
     ports:
       - "8080:8080"
     depends_on:
@@ -49,7 +49,7 @@ services:
 
   loans:
     image: "fearaujo/loans:s6"
-    container_name: loans-ms
+    container_name: loans
     ports:
       - "8090:8090"
     networks:
@@ -62,7 +62,7 @@ services:
 
   cards:
     image: "fearaujo/cards:s6"
-    container_name: "cards-ms"
+    container_name: "cards"
     ports:
       - "9000:9000"
     depends_on:
