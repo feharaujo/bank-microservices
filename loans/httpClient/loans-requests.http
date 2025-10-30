@@ -1,4 +1,5 @@
 @fullPath = localhost:8090/api
+@actuatorPath = localhost:8090/actuator
 
 ### Create card
 POST {{fullPath}}/create?mobileNumber=0610001122
@@ -30,4 +31,8 @@ Content-Type: application/json
 
 ### Refresh actuator endpoints
 POST localhost:8090/actuator/refresh
+Content-Type: application/json
+
+### Eureka shutdown
+POST {{actuatorPath}}/shutdown
 Content-Type: application/json
