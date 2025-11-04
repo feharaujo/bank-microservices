@@ -1,6 +1,7 @@
 package com.fetrova.accounts.mapper
 
 import com.fetrova.accounts.dto.CustomerDTO
+import com.fetrova.accounts.dto.CustomerDetailsDTO
 import com.fetrova.accounts.entity.Customer
 
 
@@ -16,4 +17,11 @@ fun CustomerDTO.mapToCustomer(customer: Customer): Customer {
     customer.email = this.email
     customer.mobileNumber = this.mobileNumber
     return customer
+}
+
+fun Customer.mapToCustomerDetails(customerDetailsDTO: CustomerDetailsDTO): CustomerDetailsDTO {
+    customerDetailsDTO.name = this.name
+    customerDetailsDTO.email = this.email
+    customerDetailsDTO.mobileNumber = this.mobileNumber
+    return customerDetailsDTO
 }

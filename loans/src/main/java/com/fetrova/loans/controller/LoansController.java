@@ -3,7 +3,7 @@ package com.fetrova.loans.controller;
 import com.fetrova.loans.constants.LoansConstants;
 import com.fetrova.loans.dto.ErrorResponseDto;
 import com.fetrova.loans.dto.LoansContactInfoDto;
-import com.fetrova.loans.dto.LoansDto;
+import com.fetrova.loans.dto.LoansDTO;
 import com.fetrova.loans.dto.ResponseDto;
 import com.fetrova.loans.service.ILoansService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,10 +14,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -100,10 +98,10 @@ public class LoansController {
     }
     )
     @GetMapping("/fetch")
-    public ResponseEntity<LoansDto> fetchLoanDetails(@RequestParam
+    public ResponseEntity<LoansDTO> fetchLoanDetails(@RequestParam
                                                                @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
                                                                String mobileNumber) {
-        LoansDto loansDto = iLoansService.fetchLoan(mobileNumber);
+        LoansDTO loansDto = iLoansService.fetchLoan(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK).body(loansDto);
     }
 
@@ -130,7 +128,7 @@ public class LoansController {
         }
     )
     @PutMapping("/update")
-    public ResponseEntity<ResponseDto> updateLoanDetails(@Valid @RequestBody LoansDto loansDto) {
+    public ResponseEntity<ResponseDto> updateLoanDetails(@Valid @RequestBody LoansDTO loansDto) {
         boolean isUpdated = iLoansService.updateLoan(loansDto);
         if(isUpdated) {
             return ResponseEntity

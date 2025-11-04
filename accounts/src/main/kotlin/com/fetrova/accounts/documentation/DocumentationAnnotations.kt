@@ -53,6 +53,15 @@ annotation class AccountsAppDocumentation
 )
 annotation class AccountsControllerDocumentation
 
+@Target(CLASS)
+@Retention(RUNTIME)
+@Validated
+@Tag(
+    name = "APIs for Customers",
+    description = "CRUD REST APIs for Customers"
+)
+annotation class CustomerControllerDocumentation
+
 @Target(AnnotationTarget.FUNCTION)
 @Retention(RUNTIME)
 @Operation(
@@ -70,6 +79,24 @@ annotation class AccountCreationDocumentation
 )
 @ApiResponse(responseCode = STATUS_201, description = MESSAGE_201)
 annotation class AccountFetchDocumentation
+
+@Target(AnnotationTarget.FUNCTION)
+@Retention(RUNTIME)
+@Operation(
+    summary = "Fetch customer details",
+    description = "Fetch customer details for a given mobile number"
+)
+@ApiResponses(
+    value = [
+        ApiResponse(responseCode = STATUS_200, description = MESSAGE_200),
+        ApiResponse(
+            responseCode = STATUS_500,
+            description = MESSAGE_500,
+            content = [Content(schema = Schema(implementation = ErrorResponseDTO::class))]
+        )
+    ]
+)
+annotation class CustomerFetchDocumentation
 
 @Target(AnnotationTarget.FUNCTION)
 @Retention(RUNTIME)
