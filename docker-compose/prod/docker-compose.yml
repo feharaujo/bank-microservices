@@ -29,13 +29,10 @@ services:
   # Services
 
   configserver:
-    image: "fearaujo/configserver:s7"
+    image: "fearaujo/configserver:s8"
     container_name: "configserver"
     ports:
       - "8071:8071"
-    #    depends_on:
-    #      rabbitmq:
-    #        condition: service_healthy
     healthcheck:
       test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP || exit 1"
       interval: 10s
@@ -46,8 +43,28 @@ services:
       service: microservice-base-config
       file: common-config.yml
 
+  eurekaserver:
+    image: "fearaujo/eurekaserver:s8"
+    container_name: "eurekaserver"
+    ports:
+      - "8070:8070"
+    healthcheck:
+      test: "curl --fail --silent localhost:8070/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      retries: 10
+      start_period: 10s
+      timeout: 5s
+    extends:
+      service: microservice-base-config
+      file: common-config.yml
+    depends_on:
+      configserver:
+        condition: service_healthy
+    environment:
+      SPRING_APPLICATION_NAME: "eurekaserver"
+
   accounts:
-    image: "fearaujo/accounts:s7"
+    image: "fearaujo/accounts:s8"
     container_name: "accounts"
     ports:
       - "8080:8080"
@@ -64,7 +81,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://accountsdb:3306/accountsdb
 
   loans:
-    image: "fearaujo/loans:s7"
+    image: "fearaujo/loans:s8"
     container_name: loans
     ports:
       - "8090:8090"
@@ -84,7 +101,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://loansdb:3306/loansdb
 
   cards:
-    image: "fearaujo/cards:s7"
+    image: "fearaujo/cards:s8"
     container_name: "cards"
     ports:
       - "9000:9000"
