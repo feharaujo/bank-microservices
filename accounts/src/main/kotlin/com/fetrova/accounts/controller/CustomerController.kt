@@ -5,9 +5,11 @@ import com.fetrova.accounts.documentation.CustomerFetchDocumentation
 import com.fetrova.accounts.dto.CustomerDetailsDTO
 import com.fetrova.accounts.service.ICustomersService
 import jakarta.validation.constraints.Pattern
+import org.slf4j.LoggerFactory
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -22,15 +24,20 @@ class CustomerController(
     private val customerService: ICustomersService
 ) {
 
+    val logger = LoggerFactory.getLogger(CustomerController::class.java)
+
     @CustomerFetchDocumentation
     @GetMapping("/fetchCustomerDetails")
     fun fetchCustomerDetails(
+        @RequestHeader("bank-correlation-id") correlationId: String,
         @RequestParam @Pattern(
             regexp = "(^$|[0-9]{10})",
             message = "Mobile number must be a valid phone number"
         ) mobileNumber: String
     ): ResponseEntity<CustomerDetailsDTO> {
-        val customerDetails = customerService.fetchCustomerDetails(mobileNumber)
+        logger.debug("fetchCustomerDetails: correlationId=$correlationId")
+
+        val customerDetails = customerService.fetchCustomerDetails(correlationId, mobileNumber)
         return ResponseEntity.ok(customerDetails)
     }
 

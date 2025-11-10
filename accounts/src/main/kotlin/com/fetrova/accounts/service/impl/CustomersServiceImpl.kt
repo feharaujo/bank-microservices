@@ -24,7 +24,7 @@ class CustomersServiceImpl(
     private val loansFeignClient: LoansFeignClient
 ): ICustomersService {
 
-    override fun fetchCustomerDetails(mobileNumber: String): CustomerDetailsDTO {
+    override fun fetchCustomerDetails(correlationId: String, mobileNumber: String): CustomerDetailsDTO {
         val customer = customerRepository.findByMobileNumber(mobileNumber) ?: throw ResourceNotFoundException(
             "Customer",
             "mobileNumber",
@@ -38,10 +38,10 @@ class CustomersServiceImpl(
         customerDetails.accountDTO = account.mapToAccountsDto(AccountDTO())
 
         // Open feign
-        val cardsDTOResponseEntity: ResponseEntity<CardsDTO> = cardsFeignClient.fetchCardDetails(mobileNumber)
+        val cardsDTOResponseEntity: ResponseEntity<CardsDTO> = cardsFeignClient.fetchCardDetails(correlationId, mobileNumber)
         customerDetails.cards = cardsDTOResponseEntity.body
 
-        val loansDTOResponseEntity: ResponseEntity<LoansDTO> = loansFeignClient.fetchLoanDetails(mobileNumber)
+        val loansDTOResponseEntity: ResponseEntity<LoansDTO> = loansFeignClient.fetchLoanDetails(correlationId, mobileNumber)
         customerDetails.loans = loansDTOResponseEntity.body
 
         return customerDetails

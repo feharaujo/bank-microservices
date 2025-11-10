@@ -4,6 +4,6 @@ import com.fetrova.accounts.dto.CustomerDetailsDTO
 
 interface ICustomersService {
 
-    fun fetchCustomerDetails(mobileNumber: String): CustomerDetailsDTO
+    fun fetchCustomerDetails(correlationId: String, mobileNumber: String): CustomerDetailsDTO
 
 }

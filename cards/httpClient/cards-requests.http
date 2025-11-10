@@ -1,4 +1,5 @@
-@fullPath = localhost:9000/api
+#@fullPath = localhost:9000/api
+@fullPath = localhost:8072/fetrovabank/cards/api
 @actuatorPath = localhost:9000/actuator
 
 ### Create card

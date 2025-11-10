@@ -71,7 +71,7 @@
                 <version>3.4.6</version>
                 <configuration>
                     <to>
-                        <image>fearaujo/${project.artifactId}:s8</image>
+                        <image>fearaujo/${project.artifactId}:s9</image>
                     </to>
                 </configuration>
             </plugin>
