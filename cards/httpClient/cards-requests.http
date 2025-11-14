@@ -1,4 +1,6 @@
-@fullPath = localhost:9000/api
+#@fullPath = localhost:9000/api
+@fullPath = localhost:8072/fetrovabank/cards/api
+@actuatorPath = localhost:9000/actuator
 
 ### Create card
 POST {{fullPath}}/create?mobileNumber=0610001122
@@ -30,4 +32,8 @@ Content-Type: application/json
 
 ### Refresh actuator endpoints
 POST localhost:9000/actuator/refresh
+Content-Type: application/json
+
+### Eureka shutdown
+POST {{actuatorPath}}/shutdown
 Content-Type: application/json

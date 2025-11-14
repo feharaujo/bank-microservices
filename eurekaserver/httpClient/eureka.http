@@ -1,0 +1,10 @@
+@fullPath = localhost:8070
+
+GET {{fullPath}}/eureka/apps
+Content-Type: application/json
+Accept:  application/json
+
+###
+GET {{fullPath}}/eureka/apps/accounts
+Content-Type: application/json
+Accept:  application/json

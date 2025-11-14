@@ -1,4 +1,6 @@
-@fullPath = localhost:8080/api
+//@fullPath = localhost:8080/api
+@fullPath = localhost:8072/fetrovabank/accounts/api
+@actuatorPath = localhost:8080/actuator
 
 ### Create account
 POST {{fullPath}}/create
@@ -33,9 +35,13 @@ GET {{fullPath}}/contact-info
 Content-Type: application/json
 
 ### Refresh actuator endpoints
-POST localhost:8080/actuator/refresh
+POST {{actuatorPath}}/refresh
 Content-Type: application/json
 
 ### Bus refresh actuator endpoint
-POST localhost:8080/actuator/busrefresh
+POST {{actuatorPath}}/busrefresh
+Content-Type: application/json
+
+### Eureka shutdown
+POST {{actuatorPath}}/shutdown
 Content-Type: application/json

@@ -1,11 +1,11 @@
 package com.fetrova.loans.mapper;
 
-import com.fetrova.loans.dto.LoansDto;
+import com.fetrova.loans.dto.LoansDTO;
 import com.fetrova.loans.entity.Loans;
 
 public class LoansMapper {
 
-    public static LoansDto mapToLoansDto(Loans loans, LoansDto loansDto) {
+    public static LoansDTO mapToLoansDto(Loans loans, LoansDTO loansDto) {
         loansDto.setLoanNumber(loans.getLoanNumber());
         loansDto.setLoanType(loans.getLoanType());
         loansDto.setMobileNumber(loans.getMobileNumber());
@@ -15,7 +15,7 @@ public class LoansMapper {
         return loansDto;
     }
 
-    public static Loans mapToLoans(LoansDto loansDto, Loans loans) {
+    public static Loans mapToLoans(LoansDTO loansDto, Loans loans) {
         loans.setLoanNumber(loansDto.getLoanNumber());
         loans.setLoanType(loansDto.getLoanType());
         loans.setMobileNumber(loansDto.getMobileNumber());

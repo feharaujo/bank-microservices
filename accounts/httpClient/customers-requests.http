@@ -1,0 +1,8 @@
+#@fullPath = localhost:8080/api
+@fullPath = localhost:8072/fetrovabank/accounts/api
+@actuatorPath = localhost:8080/actuator
+
+### Get Customer Details
+GET {{fullPath}}/fetchCustomerDetails?mobileNumber=0610001122
+Content-Type: application/json
+

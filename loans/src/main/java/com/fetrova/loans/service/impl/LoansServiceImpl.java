@@ -1,7 +1,7 @@
 package com.fetrova.loans.service.impl;
 
 import com.fetrova.loans.constants.LoansConstants;
-import com.fetrova.loans.dto.LoansDto;
+import com.fetrova.loans.dto.LoansDTO;
 import com.fetrova.loans.entity.Loans;
 import com.fetrova.loans.exception.LoanAlreadyExistsException;
 import com.fetrova.loans.exception.ResourceNotFoundException;
@@ -54,11 +54,11 @@ public class LoansServiceImpl implements ILoansService {
      * @return Loan Details based on a given mobileNumber
      */
     @Override
-    public LoansDto fetchLoan(String mobileNumber) {
+    public LoansDTO fetchLoan(String mobileNumber) {
         Loans loans = loansRepository.findByMobileNumber(mobileNumber).orElseThrow(
                 () -> new ResourceNotFoundException("Loan", "mobileNumber", mobileNumber)
         );
-        return LoansMapper.mapToLoansDto(loans, new LoansDto());
+        return LoansMapper.mapToLoansDto(loans, new LoansDTO());
     }
 
     /**
@@ -67,7 +67,7 @@ public class LoansServiceImpl implements ILoansService {
      * @return boolean indicating if the update of loan details is successful or not
      */
     @Override
-    public boolean updateLoan(LoansDto loansDto) {
+    public boolean updateLoan(LoansDTO loansDto) {
         Loans loans = loansRepository.findByLoanNumber(loansDto.getLoanNumber()).orElseThrow(
                 () -> new ResourceNotFoundException("Loan", "LoanNumber", loansDto.getLoanNumber()));
         LoansMapper.mapToLoans(loansDto, loans);
