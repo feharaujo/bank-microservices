@@ -1,4 +1,4 @@
-package com.fetrova.accounts.entity
+package com.fetrova.accounts.repository.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.EntityListeners

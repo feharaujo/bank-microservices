@@ -4,8 +4,8 @@ import com.fetrova.accounts.constants.ADDRESS
 import com.fetrova.accounts.constants.SAVINGS
 import com.fetrova.accounts.dto.AccountDTO
 import com.fetrova.accounts.dto.CustomerDTO
-import com.fetrova.accounts.entity.Accounts
-import com.fetrova.accounts.entity.Customer
+import com.fetrova.accounts.repository.entity.Accounts
+import com.fetrova.accounts.repository.entity.Customer
 import com.fetrova.accounts.exception.CustomerAlreadyExistsException
 import com.fetrova.accounts.exception.ResourceNotFoundException
 import com.fetrova.accounts.mapper.mapToAccounts
@@ -16,7 +16,6 @@ import com.fetrova.accounts.repository.AccountRepository
 import com.fetrova.accounts.repository.CustomerRepository
 import com.fetrova.accounts.service.IAccountsService
 import org.springframework.stereotype.Service
-import java.time.LocalDateTime
 import java.util.Random
 
 @Service

@@ -1,6 +1,6 @@
 package com.fetrova.accounts.repository
 
-import com.fetrova.accounts.entity.Customer
+import com.fetrova.accounts.repository.entity.Customer
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

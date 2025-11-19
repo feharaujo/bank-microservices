@@ -20,10 +20,11 @@ public class GatewayserverApplication {
         return builder.routes()
                 .route(p -> p
                         .path("/fetrovabank/accounts/**")
-                        .filters(f ->
-                                f.rewritePath("/fetrovabank/accounts/(?<segment>.*)", "/${segment}")
-                                        .addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
-                        .uri("lb://ACCOUNTS"))
+                        .filters(f -> f.rewritePath("/fetrovabank/accounts/(?<segment>.*)", "/${segment}")
+                                .addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+                                .circuitBreaker(config -> config.setName("accountsCircuitBreaker")
+                                        .setFallbackUri("forward:/contactSupport"))
+                        ).uri("lb://ACCOUNTS"))
                 .route(p -> p
                         .path("/fetrovabank/cards/**")
                         .filters(f -> f.rewritePath("/fetrovabank/cards/(?<segment>.*)", "/${segment}")

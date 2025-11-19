@@ -2,7 +2,7 @@ package com.fetrova.accounts.mapper
 
 import com.fetrova.accounts.dto.CustomerDTO
 import com.fetrova.accounts.dto.CustomerDetailsDTO
-import com.fetrova.accounts.entity.Customer
+import com.fetrova.accounts.repository.entity.Customer
 
 
 fun Customer.mapToCustomerDto(customerDto: CustomerDTO): CustomerDTO {
