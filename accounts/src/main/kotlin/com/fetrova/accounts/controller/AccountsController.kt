@@ -19,8 +19,10 @@ import com.fetrova.accounts.dto.AccountsContactInfoDto
 import com.fetrova.accounts.dto.CustomerDTO
 import com.fetrova.accounts.dto.ResponseDTO
 import com.fetrova.accounts.service.IAccountsService
+import io.github.resilience4j.retry.annotation.Retry
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Pattern
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.cloud.context.config.annotation.RefreshScope
@@ -55,6 +57,8 @@ class AccountsController(
 
     @Autowired
     lateinit var accountsContactInfo: AccountsContactInfoDto
+
+    val logger = LoggerFactory.getLogger(AccountsController::class.java)
 
     @AccountCreationDocumentation
     @PostMapping("/create")
@@ -105,10 +109,18 @@ class AccountsController(
         }
     }
 
+    @Retry(name = "getBuildInfo", fallbackMethod = "getBuildInfoFallback")
     @BuildInfoDocumentation
     @GetMapping("/build-info")
     fun getBuildInfo(): ResponseEntity<String> {
+        logger.debug("getBuildInfo: function getBuildInfo called")
         return ResponseEntity.ok(buildVersion)
+        //throw RuntimeException("Forced exception for testing retry mechanism")
+    }
+
+    fun getBuildInfoFallback(throwable: Throwable): ResponseEntity<String> {
+        logger.debug("getBuildInfo: function getBuildInfoFallback called")
+        return ResponseEntity.ok("Unknown")
     }
 
     @JavaVersionDocumentation
