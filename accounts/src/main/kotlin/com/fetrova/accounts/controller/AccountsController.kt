@@ -19,6 +19,7 @@ import com.fetrova.accounts.dto.AccountsContactInfoDto
 import com.fetrova.accounts.dto.CustomerDTO
 import com.fetrova.accounts.dto.ResponseDTO
 import com.fetrova.accounts.service.IAccountsService
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter
 import io.github.resilience4j.retry.annotation.Retry
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Pattern
@@ -129,10 +130,17 @@ class AccountsController(
         return ResponseEntity.ok(environment.getProperty("JAVA_HOME"))
     }
 
+    @RateLimiter(name = "getContactInfo", fallbackMethod = "getContactInfoFallback")
     @ContactInfoDocumentation
     @GetMapping("/contact-info")
     fun getContactInfo(): ResponseEntity<AccountsContactInfoDto> {
         return ResponseEntity.ok(accountsContactInfo)
+    }
+
+    fun getContactInfoFallback(throwable: Throwable): ResponseEntity<AccountsContactInfoDto> {
+        return ResponseEntity.ok(AccountsContactInfoDto().apply {
+            message = "Default message"
+        })
     }
 
 }
