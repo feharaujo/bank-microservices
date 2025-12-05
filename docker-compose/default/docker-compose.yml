@@ -39,7 +39,7 @@ services:
       service: network-deploy-services
       file: common-config.yml
   configserver:
-    image: "fearaujo/configserver:s10"
+    image: "fearaujo/configserver:s11"
     container_name: "configserver"
     ports:
       - "8071:8071"
@@ -54,7 +54,7 @@ services:
       file: common-config.yml
 
   eurekaserver:
-    image: "fearaujo/eurekaserver:s10"
+    image: "fearaujo/eurekaserver:s11"
     container_name: "eurekaserver"
     ports:
       - "8070:8070"
@@ -71,7 +71,7 @@ services:
       SPRING_APPLICATION_NAME: "eurekaserver"
 
   accounts:
-    image: "fearaujo/accounts:s10"
+    image: "fearaujo/accounts:s11"
     container_name: "accounts"
     ports:
       - "8080:8080"
@@ -94,7 +94,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://accountsdb:3306/accountsdb
 
   loans:
-    image: "fearaujo/loans:s10"
+    image: "fearaujo/loans:s11"
     container_name: loans
     ports:
       - "8090:8090"
@@ -120,7 +120,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://loansdb:3306/loansdb
 
 #  loans2:
-#    image: "fearaujo/loans:s10"
+#    image: "fearaujo/loans:s11"
 #    container_name: loans2
 #    ports:
 #      - "8091:8090"
@@ -142,7 +142,7 @@ services:
 #      SPRING_DATASOURCE_URL: jdbc:mysql://loansdb:3306/loansdb
 
   cards:
-    image: "fearaujo/cards:s10"
+    image: "fearaujo/cards:s11"
     container_name: "cards"
     ports:
       - "9000:9000"
@@ -165,7 +165,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://cardsdb:3306/cardsdb
 
   gatewayserver:
-    image: "fearaujo/gatewayserver:s10"
+    image: "fearaujo/gatewayserver:s11"
     container_name: "gatewayserver"
     ports:
       - "8072:8072"
