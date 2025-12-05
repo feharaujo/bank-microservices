@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestParam
 
 //@FeignClient(name = "cards", url = "\${cards.url}")
-@FeignClient(name = "cards")
+@FeignClient(name = "cards", fallback = CardsFallback::class)
 interface CardsFeignClient {
 
     // it calls fetchCardDetails method in cards microservice
@@ -16,6 +16,6 @@ interface CardsFeignClient {
     fun fetchCardDetails(
         @RequestHeader("bank-correlation-id") correlationId: String,
         @RequestParam("mobileNumber") mobileNumber: String
-    ): ResponseEntity<CardsDTO>
+    ): ResponseEntity<CardsDTO>?
 
 }

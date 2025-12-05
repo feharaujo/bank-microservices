@@ -1,7 +1,7 @@
 package com.fetrova.accounts.mapper
 
 import com.fetrova.accounts.dto.AccountDTO
-import com.fetrova.accounts.entity.Accounts
+import com.fetrova.accounts.repository.entity.Accounts
 
 fun Accounts.mapToAccountsDto(accountsDto: AccountDTO): AccountDTO {
     accountsDto.accountNumber = this.accountNumber

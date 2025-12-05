@@ -15,11 +15,16 @@ spring:
   config:
     #optional dont fail the app start if config server is not available
     import: "optional:configserver:http://localhost:8071/"
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
 #  rabbitmq:
 #    host: "localhost"
 #    port: 5672
 #    username: "guest"
 #    password: "guest"
+
 
 management:
   endpoints:
@@ -61,3 +66,28 @@ logging:
     com:
       fetrova:
         accounts: DEBUG
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 10 # how many last requests should be considered to change the circuit breaker state
+        permitted-number-of-calls-in-half-open-state: 2 # minimum number of requests in half-open state
+        failure-rate-threshold: 50 # percentage of failed requests that should happen before opening the circuit breaker
+        wait-duration-in-open-state: 10000 # duration of the circuit breaker open state, 10 seconds
+  retry:
+    configs:
+      default:
+        max-attempts: 3
+        wait-duration: 100
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+        ignore-exceptions:
+          - java.lang.RuntimeException
+
+  ratelimiter:
+    configs:
+      default:
+        timeout-duration: 1000
+        limit-refresh-period: 5000
+        limit-for-period: 1

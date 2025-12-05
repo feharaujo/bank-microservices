@@ -4,7 +4,7 @@ import com.fetrova.accounts.dto.AccountDTO
 import com.fetrova.accounts.dto.CardsDTO
 import com.fetrova.accounts.dto.CustomerDetailsDTO
 import com.fetrova.accounts.dto.LoansDTO
-import com.fetrova.accounts.entity.Accounts
+import com.fetrova.accounts.repository.entity.Accounts
 import com.fetrova.accounts.exception.ResourceNotFoundException
 import com.fetrova.accounts.mapper.mapToAccountsDto
 import com.fetrova.accounts.mapper.mapToCustomerDetails
@@ -38,11 +38,11 @@ class CustomersServiceImpl(
         customerDetails.accountDTO = account.mapToAccountsDto(AccountDTO())
 
         // Open feign
-        val cardsDTOResponseEntity: ResponseEntity<CardsDTO> = cardsFeignClient.fetchCardDetails(correlationId, mobileNumber)
-        customerDetails.cards = cardsDTOResponseEntity.body
+        val cardsDTOResponseEntity: ResponseEntity<CardsDTO>? = cardsFeignClient.fetchCardDetails(correlationId, mobileNumber)
+        customerDetails.cards = cardsDTOResponseEntity?.body
 
-        val loansDTOResponseEntity: ResponseEntity<LoansDTO> = loansFeignClient.fetchLoanDetails(correlationId, mobileNumber)
-        customerDetails.loans = loansDTOResponseEntity.body
+        val loansDTOResponseEntity: ResponseEntity<LoansDTO>? = loansFeignClient.fetchLoanDetails(correlationId, mobileNumber)
+        customerDetails.loans = loansDTOResponseEntity?.body
 
         return customerDetails
     }
