@@ -9,7 +9,7 @@ spring:
       server:
         webflux:
           httpclient: # global timeout settings
-            response-timeout: 5s
+            response-timeout: 10s
             connect-timeout: 10000
           discovery:
             locator:
@@ -20,7 +20,7 @@ spring:
       connect-timeout: 2s
       host: localhost
       port: 6379
-      timeout: 2s
+      timeout: 5s
 
 management:
   endpoints:
