@@ -19,3 +19,11 @@ docker run -d \
   -e MYSQL_DATABASE=loansdb \
   -p 3307:3306 \
   mysql:latest
+
+docker run -d \
+  --name redis \
+  -p 6379:6379 \
+  --health-cmd="redis-cli ping" \
+  --health-timeout=10s \
+  --health-retries=10 \
+  redis
