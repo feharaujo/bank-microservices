@@ -54,9 +54,11 @@ class CardsController(private val cardsService: ICardsService, private val iCard
         @Valid @RequestParam
         @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits") mobileNumber: String
     ): ResponseEntity<CardsDTO> {
-        logger.debug("fetchCustomerDetails: correlationId=$correlationId")
+        logger.debug("fetchCustomerDetails: started")
 
         val card = cardsService.fetchCard(mobileNumber)
+
+        logger.debug("fetchCustomerDetails: ended")
         return ResponseEntity.ok(card)
     }
 

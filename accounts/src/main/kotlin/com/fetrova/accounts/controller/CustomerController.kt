@@ -35,9 +35,11 @@ class CustomerController(
             message = "Mobile number must be a valid phone number"
         ) mobileNumber: String
     ): ResponseEntity<CustomerDetailsDTO> {
-        logger.debug("fetchCustomerDetails: correlationId=$correlationId")
-
+        //logger.debug("fetchCustomerDetails: correlationId=$correlationId")
+        logger.debug("fetchCustomerDetails: started")
         val customerDetails = customerService.fetchCustomerDetails(correlationId, mobileNumber)
+        logger.debug("fetchCustomerDetails: ended")
+
         return ResponseEntity.ok(customerDetails)
     }
 
