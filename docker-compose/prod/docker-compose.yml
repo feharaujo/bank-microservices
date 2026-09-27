@@ -95,6 +95,10 @@ services:
     environment:
       SPRING_APPLICATION_NAME: "accounts"
       SPRING_DATASOURCE_URL: jdbc:mysql://accountsdb:3306/accountsdb
+      JAVA_TOOL_OPTIONS: "-javaagent:/app/libs/opentelemetry-javaagent-2.31.1.jar"
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://tempo:4318
+      OTEL_METRICS_EXPORTER: none
+      OTEL_LOGS_EXPORTER: none
       OTEL_SERVICE_NAME: "accounts"
 
   loans:
@@ -294,14 +298,13 @@ services:
     volumes:
       - ../observability/tempo/tempo.yml:/etc/tempo/config.yaml
     ports:
-      - 4317:4317
       - 4318:4318
-      - 3100:3100
+      - 3200:3100
     command: "-config.file=/etc/tempo/config.yaml"
     depends_on:
       - gateway
     healthcheck:
-      test: [ "CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3100/ready || exit 1" ]
+      test: [ "CMD", "/tempo", "-health", "-health.url=http://localhost:3100/ready" ]
       interval: 10s
       timeout: 5s
       retries: 5

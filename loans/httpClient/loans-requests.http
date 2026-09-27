@@ -1,6 +1,6 @@
-#@fullPath = localhost:8091/api
-@fullPath = localhost:8072/fetrovabank/loans/api
-@actuatorPath = localhost:8090/actuator
+#@fullPath = http://localhost:8091/api
+@fullPath = http://localhost:8072/fetrovabank/loans/api
+@actuatorPath = http://localhost:8090/actuator
 
 ### Create card
 POST {{fullPath}}/create?mobileNumber=0610001122
@@ -29,7 +29,7 @@ GET {{fullPath}}/contact-info
 Content-Type: application/json
 
 ### Refresh actuator endpoints
-POST localhost:8090/actuator/refresh
+POST http://localhost:8090/actuator/refresh
 Content-Type: application/json
 
 ### Eureka shutdown

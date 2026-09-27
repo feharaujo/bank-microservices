@@ -1,4 +1,4 @@
-@fullPath = localhost:8071
+@fullPath = http://localhost:8071
 
 ### Encrypt data
 POST {{fullPath}}/encrypt
