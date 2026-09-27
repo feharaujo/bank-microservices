@@ -1,6 +1,6 @@
 ### Build and Push to docker hub
 # Define the variable at the beginning
-TAG=s9
+TAG=s11
 
 cd ..
 
