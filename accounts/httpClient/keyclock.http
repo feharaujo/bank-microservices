@@ -1,0 +1,11 @@
+@fullPath = http://localhost:7080/realms/master/protocol/openid-connect
+@clientSecret = b1sO9jevNTGoVex46JQ8zpcFZxXvk7rgm1bTCpro0pz6giaIOo9ejPjTXRhdV5KXUBTJH984A3XV9OBMrJ2krs
+
+### Access Token
+POST {{fullPath}}/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id=easybank-callcenter-cc
+&client_secret={{clientSecret}}
+&scope=openid%20email%20profile
